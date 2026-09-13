@@ -8,7 +8,7 @@ export const DEFAULT_BUSINESS: Pick<
   'business_name' | 'business_email' | 'business_phone' | 'business_address'
 > = {
   business_name: 'Bright and Tidy Cleaning',
-  business_email: '',
+  business_email: 'info@brightandtidyco.com',
   business_phone: '(951) 593-8266',
   business_address: '',
 }

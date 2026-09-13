@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, CalendarDays, Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, CalendarDays, Clock, Mail, Phone } from 'lucide-react'
 import { usePublicData } from '@/components/public/PublicDataContext'
 import { BrandLockup } from './shell/Brand'
 import { PUBLIC_NAV_LINKS, mailHref, sectionLinkProps, telHref } from './shell/links'
@@ -10,8 +10,9 @@ const FOOTER_LINK =
 export function Footer() {
   const { business } = usePublicData()
   const year = new Date().getFullYear()
-  const { business_name: name, business_email: email, business_phone: phone, business_address: address } = business
-  const hasContact = Boolean(email || phone || address)
+  // Contact is phone and email only. The address is not published.
+  const { business_name: name, business_email: email, business_phone: phone } = business
+  const hasContact = Boolean(email || phone)
 
   return (
     <footer className="relative overflow-hidden bg-ink-950 text-ink-300">
@@ -87,12 +88,6 @@ export function Footer() {
                       <Mail className="h-4 w-4 shrink-0 text-brand-400" />
                       {email}
                     </a>
-                  </li>
-                )}
-                {address && (
-                  <li className="flex items-start gap-1.5 text-sm text-ink-300">
-                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-                    <span className="whitespace-pre-line">{address}</span>
                   </li>
                 )}
               </ul>

@@ -226,6 +226,7 @@ export default function BusinessSettingsPage() {
                   placeholder="Street, city, state and ZIP"
                   value={form.business_address}
                   onChange={(event) => set('business_address', event.target.value)}
+                  help="For your records only. The website shows phone and email, never this address."
                   className="sm:col-span-2"
                 />
               </div>
@@ -332,7 +333,6 @@ export default function BusinessSettingsPage() {
                 <ul className="relative mt-5 space-y-2.5 text-sm text-white/75">
                   <PreviewLine icon={<Phone className="h-4 w-4" />} value={form.business_phone} placeholder="No phone shown" />
                   <PreviewLine icon={<Mail className="h-4 w-4" />} value={form.business_email} placeholder="No email shown" />
-                  <PreviewLine icon={<MapPin className="h-4 w-4" />} value={form.business_address} placeholder="No address shown" />
                 </ul>
               </div>
               <div className="space-y-3 px-5 py-5 text-sm text-ink-600">
