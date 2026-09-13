@@ -215,7 +215,7 @@ export default function BusinessSettingsPage() {
                   label="Company Phone"
                   type="tel"
                   leftIcon={<Phone className="h-4 w-4" />}
-                  placeholder="(555) 010-2040"
+                  placeholder="(951) 593-8266"
                   value={form.business_phone}
                   onChange={(event) => set('business_phone', event.target.value)}
                   help="Shown as a tap-to-call link."

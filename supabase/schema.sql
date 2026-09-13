@@ -298,7 +298,7 @@ end $$;
 --  Starter data (only inserted when the tables are empty)
 -- ---------------------------------------------------------------------
 insert into public.business_settings (business_name, business_email, business_phone, business_address, slot_interval_minutes, booking_notice_hours)
-select 'Bright and Tidy Cleaning', 'hello@brightandtidycleaning.com', '(555) 010-2040', '120 Harbor Street, Suite 4, Portland, OR 97209', 30, 24
+select 'Bright and Tidy Cleaning', 'hello@brightandtidycleaning.com', '(951) 593-8266', '', 30, 24
 where not exists (select 1 from public.business_settings);
 
 insert into public.business_hours (weekday, is_open, start_time, end_time)
