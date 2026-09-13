@@ -128,6 +128,19 @@ All photos are listed in `src/lib/images.ts`. Change the `src` and `alt` values 
 Service cards pick an image by keywords in the service name, such as "deep", "move", "office" or "apartment". New services added in the dashboard get a matching photo automatically.
 If an image fails to load, a branded placeholder keeps the layout intact.
 
+## Deploying to GitHub Pages
+
+Pushing to `main` runs `.github/workflows/static.yml`, which installs dependencies, builds the site and publishes `dist/`.
+
+Before the first deploy, do two things in the repository settings:
+
+1. **Settings, Pages, Source: GitHub Actions.**
+2. **Settings, Secrets and variables, Actions.** Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. The anon key is the publishable one and is safe in a browser build, since row-level security controls access. Never add the service role key.
+
+The site is then served from `https://<user>.github.io/<repo>/`. The workflow passes that subpath to the build, and copies `index.html` to `404.html` so deep links like `/admin` survive a refresh.
+
+Any host that runs `npm run build` and serves `dist/` works too. On a host serving from the domain root, leave `VITE_BASE_PATH` unset and point all unknown routes at `index.html`.
+
 ## Project structure
 
 ```
