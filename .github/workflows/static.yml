@@ -50,8 +50,10 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          # Project pages are served from https://<user>.github.io/<repo>/
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # The site is served from the root of a custom domain, so no subpath.
+          # If you ever serve it from https://<user>.github.io/<repo>/ instead,
+          # set this to /<repo>/ so the asset URLs resolve.
+          VITE_BASE_PATH: /
         run: npm run build
 
       - name: Add SPA fallback

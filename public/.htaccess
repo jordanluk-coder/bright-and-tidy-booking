@@ -1,0 +1,31 @@
+# Single-page app routing for Apache / LiteSpeed hosting (Hostinger and similar).
+#
+# The app renders routes like /admin in the browser. Without this rule the server
+# looks for a folder named "admin", does not find one, and returns its own 404.
+# Any request that is not a real file or folder is served index.html instead, and
+# the app takes over from there.
+#
+# Ignored by hosts that do not use Apache (GitHub Pages, Netlify, Vercel), so it
+# is safe to keep in the build.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Real files and folders are served as-is (assets, images, favicon).
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else falls back to the app.
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Long-cache the fingerprinted build assets; never cache the HTML shell.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|svg|png|jpg|jpeg|webp|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
